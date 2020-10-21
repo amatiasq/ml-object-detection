@@ -1,0 +1,28 @@
+{
+  "name": "ts-canvas",
+  "version": "0.0.0",
+  "author": "A. Matías Quezada (amatiasq@gmail.com)",
+  "license": "BSD-2-Clause",
+  "private": true,
+  "scripts": {
+    "start": "npm run webpack-dev-server",
+    "build": "npm run webpack -- --env.mode production",
+    "webpack": "webpack --config config/webpack.config.js",
+    "webpack-dev-server": "webpack-dev-server --config config/webpack.config.js --env.mode development --open",
+    "postinstall": "node config/patch-node_modules.js",
+    "pre-commit": "npm test"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "3.0.0",
+    "compression-webpack-plugin": "3.1.0",
+    "file-loader": "4.3.0",
+    "html-webpack-plugin": "3.2.0",
+    "ts-loader": "6.2.2",
+    "typescript": "3.9.7",
+    "uglifyjs-webpack-plugin": "2.2.0",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.0",
+    "webpack-merge": "4.2.2"
+  }
+}
