@@ -1,17 +1,24 @@
 import { fillPage, getSize, context, renderText } from './canvas';
 import { captureVideo } from './util/captureVideo';
+import { getQueryParams } from './util/getQueryParams';
 import { scaleAndCenter } from './util/scaleAndCenter';
 
 declare global {
   const ml5: any;
 }
 
+const params = getQueryParams();
+
 fillPage();
 
 (async () => {
   printLoading();
-  const video = await captureVideo();
-  const detector = await ml5.objectDetector('cocossd');
+
+  const [video, detector] = await Promise.all([
+    captureVideo({ facingMode: 'user' }),
+    ml5.objectDetector(params.yolo ? 'yolo' : 'cocossd'),
+  ]);
+
   let detections: any[] = [];
 
   detect();
